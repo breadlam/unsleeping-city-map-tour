@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unsleeping City Walking Tours</title>
+<meta name="description" content="Self-guided walking and subway tours of the New York places from Dimension 20's The Unsleeping City, one for each chapter, each doable in a day or a weekend.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"
+      integrity="sha384-c6Rcwz4e4CITMbu/NBmnNS8yN2sC3cUElMEMfP3vqqKFp7GOYaaBBCqmaWBjmkjb" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="tour.css">
+</head>
+<body>
+<div id="app">
+  <aside id="panel" aria-label="Tour itinerary">
+    <header class="head">
+      <p class="kicker">Self-guided walking tours</p>
+      <h1>The Unsleeping City</h1>
+      <p class="sub">The real New York places from Dimension 20's <i>The Unsleeping City</i>, on foot and by subway.
+        One tour per chapter; each takes a weekend, or pick one day.</p>
+      <div class="seg" id="chapter-seg" role="tablist" aria-label="Chapter">
+        <button role="tab" data-ch="0">Chapter 1</button>
+        <button role="tab" data-ch="1">Chapter 2</button>
+      </div>
+    </header>
+    <div id="itinerary" class="itinerary"></div>
+    <footer class="credits">
+      <p><b>Take it with you:</b> <a id="kml-link" href="#">Google My Maps file (KML)</a> ·
+        <a href="tours.geojson">GeoJSON</a> · <a id="print-link" href="#">printable map of this day</a></p>
+      <p>Fan-made and unofficial. <i>The Unsleeping City</i> belongs to Dropout / Dimension 20. Story details come from fan
+        transcripts. Times are estimates; check opening hours, tickets and weekend subway changes before you go.</p>
+      <p>Walking routes: <a href="https://project-osrm.org/">OSRM</a> (hosted by <a href="https://fossgis.de/">FOSSGIS</a>) on
+        <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> data. Subway track and stations: MTA via
+        <a href="https://data.ny.gov/">data.ny.gov</a>. Map: <a href="https://leafletjs.com/">Leaflet</a>, Esri and OpenStreetMap tiles.</p>
+    </footer>
+  </aside>
+  <main id="mapwrap">
+    <div id="map" aria-label="Tour map"></div>
+  </main>
+</div>
+<noscript><p style="padding:16px">This tour map needs JavaScript.</p></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"
+        integrity="sha384-NElt3Op+9NBMCYaef5HxeJmU4Xeard/Lku8ek6hoPTvYkQPh3zLIrJP7KiRocsxO" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="tour_data.js"></script>
+<script src="tour.js"></script>
+</body>
+</html>

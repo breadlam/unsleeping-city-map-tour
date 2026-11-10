@@ -2,6 +2,8 @@
 
 **Live map: https://breadlam.github.io/unsleeping-city-map-tour/**
 
+The companion **walking tours** of the real places, one per chapter, are published from this same repository in its `walking-tour/` folder: **https://breadlam.github.io/unsleeping-city-map-tour/walking-tour/**
+
 A zoomable map of every place the player characters visit in Dimension 20's *The Unsleeping City*
 (Chapters 1 and 2), and the routes they take between scenes. It is a static site: four files and no build step.
 
@@ -23,6 +25,8 @@ Leaflet 1.9.4 loads from cdnjs, with integrity hashes. Basemap tiles come from E
 3. After a minute the map is live at `https://<your-user>.github.io/<repo>/`.
 
 To put it inside an existing repository instead, copy the files into a `docs/` folder and pick `/docs` in step 2.
+
+Other folders in the same repository are served at their own addresses. That's how the walking tours share this repository: they live in `walking-tour/` and appear at `/walking-tour/`.
 
 ## Run it locally
 
