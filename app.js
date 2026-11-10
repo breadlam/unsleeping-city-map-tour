@@ -338,9 +338,7 @@
     const casing = [], lines = [];
     const k = wscale(map.getZoom());
     for (const l of currentLegs(ev)) {
-      if (!(l.st || S.inferred)) continue;
       for (const p of l.p) {
-        if (!S.modes.has(p.m)) continue;
         const m = MODES[p.m];
         const off = offsetUnits[l.c] || 0;
         casing.push(new OffsetPolyline(p.ll, { renderer: hlRenderer, offset: off, color: '#ffffff', weight: m.weight * k + 5, opacity: 0.85, lineCap: 'round', lineJoin: 'round', interactive: false }));
@@ -693,9 +691,8 @@
       if (!m) return;
       if (e.target.checked) S.modes.add(m); else S.modes.delete(m);
       renderRoutes();
-      renderHighlight(curEv());
     });
-    $('inferred').addEventListener('change', (e) => { S.inferred = e.target.checked; renderRoutes(); renderHighlight(curEv()); });
+    $('inferred').addEventListener('change', (e) => { S.inferred = e.target.checked; renderRoutes(); });
 
     segControl('chapter-seg', () => S.chapter, (v) => { S.chapter = v; filtersChanged(); });
     segControl('show-seg', () => S.show, (v) => { S.show = v; renderRoutes(); renderPins(); updateHash(); });
