@@ -11,7 +11,7 @@
     walk:   { label: 'Walking, running', note: 'routed along streets', z: 6, weight: 3.6, dash: '0.1 6.5', opacity: 0.95 },
     drive:  { label: 'Car, cab, bus or moped', note: 'routed on roads', z: 4, weight: 2.4, dash: null, opacity: 0.95 },
     subway: { label: 'Subway', note: 'follows the track', z: 5, weight: 4.4, dash: null, opacity: 0.85 },
-    water:  { label: 'Ferry or swimming', note: 'straight across the water', z: 3, weight: 2.6, dash: '10 5 2 5', opacity: 0.95 },
+    water:  { label: 'Ferry or swimming', note: 'ferries follow the ferry route', z: 3, weight: 2.6, dash: '10 5 2 5', opacity: 0.95 },
     fly:    { label: 'Flying', note: 'straight line', z: 2, weight: 2.4, dash: '9 6', opacity: 0.9 },
     magic:  { label: 'Magic', note: 'portals, teleports, falling asleep into Nod', z: 1, weight: 1.8, dash: '0.1 4.5', opacity: 0.8 },
   };
@@ -338,7 +338,9 @@
     const casing = [], lines = [];
     const k = wscale(map.getZoom());
     for (const l of currentLegs(ev)) {
+      if (!(l.st || S.inferred)) continue;
       for (const p of l.p) {
+        if (!S.modes.has(p.m)) continue;
         const m = MODES[p.m];
         const off = offsetUnits[l.c] || 0;
         casing.push(new OffsetPolyline(p.ll, { renderer: hlRenderer, offset: off, color: '#ffffff', weight: m.weight * k + 5, opacity: 0.85, lineCap: 'round', lineJoin: 'round', interactive: false }));
@@ -691,8 +693,9 @@
       if (!m) return;
       if (e.target.checked) S.modes.add(m); else S.modes.delete(m);
       renderRoutes();
+      renderHighlight(curEv());
     });
-    $('inferred').addEventListener('change', (e) => { S.inferred = e.target.checked; renderRoutes(); });
+    $('inferred').addEventListener('change', (e) => { S.inferred = e.target.checked; renderRoutes(); renderHighlight(curEv()); });
 
     segControl('chapter-seg', () => S.chapter, (v) => { S.chapter = v; filtersChanged(); });
     segControl('show-seg', () => S.show, (v) => { S.show = v; renderRoutes(); renderPins(); updateHash(); });
